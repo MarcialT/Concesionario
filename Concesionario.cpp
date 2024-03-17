@@ -3,7 +3,7 @@
 #include<string.h>
 
 using namespace std;
-
+ 
 struct Carro{
 int id;        //id
 string maker;   //marca
@@ -22,6 +22,101 @@ string last_name;    //apellido
 string email;        //email
 int age;            //edad
 };
+
+void AgregarDatosCarros();
+void EliminarDatosCarros();
+void ModificarDatosCarros();
+
+void AgregarDatosClientes();
+void EliminarDatosClientes();
+void ModificarDatosClientes();
+
+void AgregarDatosCarros(){
+ofstream archivo_carros("cars_data.csv" , ios::app);
+Carro c;
+
+cout<<"Ingrese el id: ";
+cin>>c.id;
+cout<<"Ingrese la marca del carro: ";
+cin>>c.maker;
+cout<<"Ingrese el modelo del carro: ";
+cin>>c.model;
+cout<<"Ingrese el ano del carro: ";
+cin>>c.year;
+cout<<"Ingrese a quien fue comprado el carro: ";
+cin>>c.sold_to;
+cout<<"Ingrese a quien fue vendido el carro: ";
+cin>>c.bought_to;
+cout<<"Ingrese por cuanto fue comprado el carro: ";
+cin>>c.sold_for;
+cout<<"Ingrese por cuanto fue vendido el carro: ";
+cin>>c.bought_for;
+
+archivo_carros<< c.id<< ";"<<c.maker<<";"<<c.model<<";"<<c.year<<";"<<c.sold_to<<";"<<c.bought_to<<";"<<c.sold_for<<";"<<c.bought_for<<endl;
+archivo_carros.close();
+}
+
+void EliminarDatosCarros(){
+    Carro c;
+    cout<<"Ingrese el id para saber que carro desea eliminar: ";
+    cin>>c.id;
+    ofstream temp("temp.csv");
+    ifstream archivo_carro("cars_data.csv");
+    string linea;
+
+    while(getline(archivo_carro,linea)){
+        int id_actual= atoi(linea.substr(0,linea.find(';')).c_str());
+        if(id_actual != c.id){
+            temp<<linea<<endl;
+        }
+    }
+archivo_carro.close();
+temp.close();
+
+remove("cars_data.csv"); 
+rename("temp.csv", "cars_data.csv");
+cout<<"los datos fueron borrados exitosamente"<<endl;
+}
+
+void ModificarDatosCarros(){
+Carro c;
+cout<<"Ingrese el id del carro que desea modificar: ";
+cin>>c.id;
+
+ofstream temp("temp.csv");
+ifstream archivo_carros("cars_data.csv");
+string linea;
+
+while(getline(archivo_carros,linea)){
+    int id_actual = atoi(linea.substr(0,linea.find(';')).c_str());
+    if(id_actual==c.id){
+cout<<"Ingrese el id: ";
+cin>>c.id;
+cout<<"Ingrese la marca del carro: ";
+cin>>c.maker;
+cout<<"Ingrese el modelo del carro: ";
+cin>>c.model;
+cout<<"Ingrese el ano del carro: ";
+cin>>c.year;
+cout<<"Ingrese a quien fue comprado el carro: ";
+cin>>c.sold_to;
+cout<<"Ingrese a quien fue vendido el carro: ";
+cin>>c.bought_to;
+cout<<"Ingrese por cuanto fue comprado el carro: ";
+cin>>c.sold_for;
+cout<<"Ingrese por cuanto fue vendido el carro: ";
+cin>>c.bought_for;
+    }else{
+        temp<<linea<<endl;
+    }
+}
+archivo_carros.close();
+temp.close();
+
+remove("cars_data.csv");
+rename("temp.csv","cars_data.csv");
+cout<<"Los datos se modificaron correctamente"<<endl;
+}
 
 int main(){
 ifstream archivo_cars("cars_data.csv", ios::in);
