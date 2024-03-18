@@ -3,7 +3,7 @@
 #include<string.h>
 
 using namespace std;
- 
+
 struct Carro{
 int id;        //id
 string maker;   //marca
@@ -116,6 +116,82 @@ temp.close();
 remove("cars_data.csv");
 rename("temp.csv","cars_data.csv");
 cout<<"Los datos se modificaron correctamente"<<endl;
+}
+
+void AgregarDatosClientes(){
+    ofstream archivo_clientes("clients.csv", ios::app);
+    Clientes cl;
+
+    cout<<"Ingrese el id: ";
+    cin>>cl.id;
+    cout<<"Ingrese el nombre del cliente: ";
+    cin>>cl.first_name;
+    cout<<"Ingrese el apellido del cliente: ";
+    cin>>cl.last_name;
+    cout<<"Ingrese el email del cliente: ";
+    cin>>cl.email;
+    cout<<"Ingrese la edad del cliente: ";
+    cin>>cl.age;
+
+    archivo_clientes<<cl.id<<";"<<cl.first_name<<";"<<cl.last_name<<";"<<cl.email<<";"<<cl.age<<endl;
+    archivo_clientes.close();
+}
+
+void EliminarDatosClientes(){
+    Clientes cl;
+
+    cout<<"Ingrese el id para saber que cliente desea eliminar: ";
+    cin>>cl.id;
+    ofstream temp("temp.csv");
+    ifstream archivo_clientes("clients.csv");
+    string linea;
+
+    while(getline(archivo_clientes,linea)){
+        int id_actual= atoi(linea.substr(0,linea.find(';')).c_str());
+        if(id_actual != cl.id){
+            temp<<linea<<endl;
+        }
+    }
+    archivo_clientes.close();
+    temp.close();
+
+    remove("clients.csv");
+    rename("temp.csv","clients.csv");
+    cout<<"Los datos fueron eliminaros"<<endl;
+}
+
+void ModificarDatosClientes(){
+    Clientes cl;
+    cout<<"Ingrese el id del cliente que desea modificar: ";
+    cin>>cl.id;
+
+    ofstream temp("temp.csv");
+    ifstream archivo_clientes("clients.csv");
+    string linea;
+    
+    while(getline(archivo_clientes,linea)){
+        int id_actual = atoi(linea.substr(0,linea.find(';')).c_str());
+    if(id_actual==cl.id){
+        cout<<"Ingrese el id: ";
+        cin>>cl.id;
+        cout<<"Ingrese el nombre: ";
+        cin>>cl.first_name;
+        cout<<"Ingrese el apellido: ";
+        cin>>cl.last_name;
+        cout<<"Ingrese el email: ";
+        cin>>cl.email;
+        cout<<"Ingrese la edad: ";
+        cin>>cl.age;
+    }else{
+        temp<<linea<<endl;
+    }
+    }
+    archivo_clientes.close();
+    temp.close();
+
+    remove("clients.csv");
+    rename("temp.csv","clients.csv");
+    cout<<"Los datos se modificaron de manera exitosa"<<endl;
 }
 
 int main(){
