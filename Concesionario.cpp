@@ -258,14 +258,17 @@ int main(){
     string linea;
     int carros_totales_comprados= 0;
     int carros_totales_vendidos=0;
-    int opcion;
+    int balance_ganancia=0;
+    int balance_perdida=0;
+    int opcion, opcion2, opcion3,opcion4;
      Carro carsCatalog[2000];
      int carCatalogSize;
     Clientes clientCatalog[250];
     int clientCatalogSize;
-    int id, id2, id3,id4;
+    int id, id2, id3,id4,id5,id6,id7;
     string Nombre_cliente, Apellido_cliente, Email_cliente;
     bool opcionvalida = false;
+
        do{
     cout<<"Que desea hacer?"<<endl
     <<"1. Ver la cantidad de carros comprados y vendidos por clientes."<<endl
@@ -335,7 +338,27 @@ switch (opcion){
     break;
 
     case 6:
-    cout<<"Balance de un carro:"<<endl;
+    {
+                cout<<"\nIngrese el id del cliente: ";
+            cin>>id6;
+
+            LeerDatosClientes("clients.csv",clientCatalog,clientCatalogSize);
+            LeerDatosCarros("cars_data.csv",carsCatalog,carCatalogSize);
+
+             for(int i=0 ;i<carCatalogSize ; i++){
+            if(carsCatalog[i].id==id6){
+            
+            balance_ganancia=carsCatalog[i].sold_for-carsCatalog[i].bought_for;
+            balance_perdida=carsCatalog[i].bought_for-carsCatalog[i].sold_for;
+
+            if(carsCatalog[i].sold_for>carsCatalog[i].bought_for){
+                cout<<"Se tuvo una ganancia de "<<balance_ganancia<<endl;
+            }else{
+                cout<<"Se tuvo una perdida de "<<balance_perdida<<endl;
+            }
+            }
+            }
+    }
     break;
 
     case 7:
