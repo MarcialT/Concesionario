@@ -322,7 +322,26 @@ switch (opcion){
             break;
             }
     case 2:
-    cout<<"Lista de carros comprados por clientes"<<endl;
+    cout<<"\nIngrese el id del cliente:";
+    cin>>id2;
+
+    LeerDatosClientes("clients.csv",clientCatalog,clientCatalogSize);
+    LeerDatosCarros("cars_data.csv",carsCatalog,carCatalogSize);
+    
+    for(int i=0; i<clientCatalogSize;i++){
+        if(clientCatalog[i].id==id2){
+            Nombre_cliente=clientCatalog[i].first_name;
+            Apellido_cliente=clientCatalog[i].last_name;
+        }
+    }
+    cout<<"\n"<<Nombre_cliente<<" "<<Apellido_cliente<<" "<<"compro los siguientes carros:\n"<<endl;
+
+    for(int i=0; i<carCatalogSize;i++){
+        if(carsCatalog[i].bought_to==id2){
+            cout<<carsCatalog[i].maker<<" "<<carsCatalog[i].model<<","<<carsCatalog[i].year<<endl;
+        }
+    }
+
     break;
 
     case 3:
@@ -339,7 +358,7 @@ switch (opcion){
 
     case 6:
     {
-                cout<<"\nIngrese el id del cliente: ";
+            cout<<"\nIngrese el id del cliente: ";
             cin>>id6;
 
             LeerDatosClientes("clients.csv",clientCatalog,clientCatalogSize);
