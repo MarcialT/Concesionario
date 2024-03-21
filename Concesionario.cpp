@@ -345,7 +345,27 @@ switch (opcion){
     break;
 
     case 3:
-    cout<<"Lista de carros vendidos por clientes:"<<endl;
+    cout<<"\nIngrese el id del cliente:";
+    cin>>id3;
+
+    LeerDatosClientes("clients.csv",clientCatalog,clientCatalogSize);
+    LeerDatosCarros("cars_data.csv",carsCatalog,carCatalogSize);
+
+    for(int i=0; i<clientCatalogSize;i++){
+        if(clientCatalog[i].id==id3){
+            Nombre_cliente=clientCatalog[i].first_name;
+            Apellido_cliente=clientCatalog[i].last_name;
+        }
+    }
+    cout<<"\n"<<Nombre_cliente<<" "<<Apellido_cliente<<" "<<"vendio los siguientes carros:\n"<<endl;
+
+    for(int i=0; i<carCatalogSize;i++){
+        if(carsCatalog[i].sold_to==id3){
+            cout<<carsCatalog[i].maker<<" "<<carsCatalog[i].model<<","<<carsCatalog[i].year<<endl;
+        }
+    }
+
+
     break;
 
     case 4:
