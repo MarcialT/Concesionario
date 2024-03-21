@@ -1,6 +1,8 @@
 #include<iostream>
 #include<fstream>
-#include<string.h>
+#include<string>
+#include<sstream>
+#include<conio.h>
 
 using namespace std;
 
@@ -22,6 +24,64 @@ string last_name;    //apellido
 string email;        //email
 int age;            //edad
 };
+
+void LeerDatosClientes(const string &filename, Clientes catalog[], int &catalogSize);
+void LeerDatosCarros(const string &filename, Carro catalog[], int &catalogSize);
+
+void LeerDatosClientes(const string &filename, Clientes catalog[], int &catalogSize)
+{
+    ifstream clientFile(filename);
+    string line;
+    catalogSize = 0;
+
+    getline(clientFile, line);
+
+    while (getline(clientFile, line))
+    {
+        stringstream ss(line);
+
+        ss >> catalog[catalogSize].id;
+        ss.ignore();
+        getline(ss, catalog[catalogSize].first_name, ';');
+        getline(ss, catalog[catalogSize].last_name, ';');
+        getline(ss, catalog[catalogSize].email, ';');
+        ss >> catalog[catalogSize].age;
+        ss.ignore();
+
+        catalogSize++;
+    }
+}
+
+void LeerDatosCarros(const string &filename, Carro catalog[], int &catalogSize)
+{
+    ifstream carFile(filename);
+    string line;
+    catalogSize = 0;
+
+    getline(carFile, line);
+
+    while (getline(carFile, line))
+    {
+        stringstream ss(line);
+
+        ss >> catalog[catalogSize].id;
+        ss.ignore();
+        getline(ss, catalog[catalogSize].maker, ';');
+        getline(ss, catalog[catalogSize].model, ';');
+        ss >> catalog[catalogSize].year;
+        ss.ignore();
+        ss >> catalog[catalogSize].sold_to;
+        ss.ignore();
+        ss >> catalog[catalogSize].bought_to;
+        ss.ignore();
+        ss >> catalog[catalogSize].sold_for;
+        ss.ignore();
+        ss >> catalog[catalogSize].bought_for;
+        ss.ignore();
+
+        catalogSize++;
+    }
+}
 
 void AgregarDatosCarros();
 void EliminarDatosCarros();
@@ -195,18 +255,18 @@ void ModificarDatosClientes(){
 }
 
 int main(){
-ifstream archivo_cars("cars_data.csv", ios::in);
-ifstream archivo_clients("clients.csv", ios::in);
-string linea;
-int Carros_comprados, Carros_vendidos;
-int opcion;
-int opcion_segundoswitch;
-bool opcionvalida = false;
+    string linea;
+    int opcion;
+     Carro carsCatalog[2000];
+     int carCatalogSize;
+    Clientes clientCatalog[250];
+    int clientCatalogSize;
+    bool opcionvalida = false;
        do{
     cout<<"Que desea hacer?"<<endl
     <<"1. Ver la cantidad de carros comprados y vendidos por clientes."<<endl
-    <<"2. Ver carros comprados por clientes."<<endl
-    <<"3. Ver carros vendidos por clientes."<<endl
+    <<"2. Ver cuales carros fueron comprados por clientes."<<endl
+    <<"3. Ver cuales carros fueron vendidos por clientes."<<endl
     <<"4. Ver datos del comprador de un carro."<<endl
     <<"5. Ver datos del vendedor de un carro."<<endl
     <<"6. Mostrar balance de un carro"<<endl
