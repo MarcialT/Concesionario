@@ -256,11 +256,15 @@ void ModificarDatosClientes(){
 
 int main(){
     string linea;
+    int carros_totales_comprados= 0;
+    int carros_totales_vendidos=0;
     int opcion;
      Carro carsCatalog[2000];
      int carCatalogSize;
     Clientes clientCatalog[250];
     int clientCatalogSize;
+    int id, id2, id3,id4;
+    string Nombre_cliente, Apellido_cliente, Email_cliente;
     bool opcionvalida = false;
        do{
     cout<<"Que desea hacer?"<<endl
@@ -284,9 +288,36 @@ opcionvalida = false;
 switch (opcion){
 
     case 1:
-    cout<<"Cantidad de carros comprados y vendidos por clientes"<<endl;
-    break;
+    {
+            cout<<"\nIngrese el id del cliente: ";
+            cin>>id;
 
+            LeerDatosClientes("clients.csv",clientCatalog,clientCatalogSize);
+            LeerDatosCarros("cars_data.csv",carsCatalog,carCatalogSize);
+
+            for(int i=0 ;i<carCatalogSize ; i++){
+        if(carsCatalog[i].bought_to==id){
+        carros_totales_comprados++;
+}
+    }
+    for(int i=0; i<clientCatalogSize; i++){
+        if(clientCatalog[i].id==id){
+            Nombre_cliente=clientCatalog[i].first_name;
+            Apellido_cliente=clientCatalog[i].last_name;
+        }
+    }
+    for(int i=0; i<carCatalogSize;i++){
+        if(carsCatalog[i].sold_to==id){
+            carros_totales_vendidos++;
+        }
+    }
+
+    cout<<"El cliente "<<Nombre_cliente<<" "<<Apellido_cliente<<" "<<"Compro "<<carros_totales_comprados<<" carros"<<" "<<"y vendio "<<carros_totales_vendidos<<" carros"<<endl;
+           
+           carros_totales_comprados=0;
+           carros_totales_vendidos=0;
+            break;
+            }
     case 2:
     cout<<"Lista de carros comprados por clientes"<<endl;
     break;
