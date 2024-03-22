@@ -2,7 +2,6 @@
 #include<fstream>
 #include<string>
 #include<sstream>
-#include<conio.h>
 
 using namespace std;
 
@@ -98,9 +97,9 @@ Carro c;
 cout<<"Ingrese el id: ";
 cin>>c.id;
 cout<<"Ingrese la marca del carro: ";
-cin>>c.maker;
+getline(cin,c.maker);
 cout<<"Ingrese el modelo del carro: ";
-cin>>c.model;
+getline(cin,c.model);
 cout<<"Ingrese el ano del carro: ";
 cin>>c.year;
 cout<<"Ingrese a quien fue comprado el carro: ";
@@ -153,9 +152,9 @@ while(getline(archivo_carros,linea)){
 cout<<"Ingrese el id: ";
 cin>>c.id;
 cout<<"Ingrese la marca del carro: ";
-cin>>c.maker;
+getline(cin,c.maker);
 cout<<"Ingrese el modelo del carro: ";
-cin>>c.model;
+getline(cin,c.model);
 cout<<"Ingrese el ano del carro: ";
 cin>>c.year;
 cout<<"Ingrese a quien fue comprado el carro: ";
@@ -185,11 +184,11 @@ void AgregarDatosClientes(){
     cout<<"Ingrese el id: ";
     cin>>cl.id;
     cout<<"Ingrese el nombre del cliente: ";
-    cin>>cl.first_name;
+    getline(cin,cl.first_name);
     cout<<"Ingrese el apellido del cliente: ";
-    cin>>cl.last_name;
+    getline(cin,cl.last_name);
     cout<<"Ingrese el email del cliente: ";
-    cin>>cl.email;
+    getline(cin,cl.email);
     cout<<"Ingrese la edad del cliente: ";
     cin>>cl.age;
 
@@ -235,11 +234,11 @@ void ModificarDatosClientes(){
         cout<<"Ingrese el id: ";
         cin>>cl.id;
         cout<<"Ingrese el nombre: ";
-        cin>>cl.first_name;
+        getline(cin,cl.first_name);
         cout<<"Ingrese el apellido: ";
-        cin>>cl.last_name;
+        getline(cin,cl.last_name);
         cout<<"Ingrese el email: ";
-        cin>>cl.email;
+        getline(cin,cl.email);
         cout<<"Ingrese la edad: ";
         cin>>cl.age;
     }else{
