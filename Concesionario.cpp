@@ -268,19 +268,20 @@ int main(){
     string Nombre_cliente, Apellido_cliente, Email_cliente;
     int edad_cliente=0;
     bool opcionvalida = false;
-
+while(opcion!=8){
        do{
-    cout<<"Que desea hacer?"<<endl
+    cout<<"\nQue desea hacer?"<<endl
     <<"1. Ver la cantidad de carros comprados y vendidos por clientes."<<endl
     <<"2. Ver cuales carros fueron comprados por clientes."<<endl
     <<"3. Ver cuales carros fueron vendidos por clientes."<<endl
     <<"4. Ver datos del comprador de un carro."<<endl
     <<"5. Ver datos del vendedor de un carro."<<endl
     <<"6. Mostrar balance de un carro"<<endl
-    <<"7. Modificar datos"<<endl;
+    <<"7. Modificar datos"<<endl
+    <<"8. Salir"<<endl;
     cin>>opcion;
 
-if(opcion>=1 && opcion<=7){
+if(opcion>=1 && opcion<=8){
 opcionvalida = true;
 }else{
     cout<<"Opcion invalida, por favor coloque una opcion dentro del rango dado"<<endl;
@@ -475,5 +476,10 @@ for(int i=0; i<carCatalogSize;i++){
         }
     }
 break;
+
+    case 8:
+    cout<<"Gracias por preferir nuestra concesionaria:)"<<endl;
+    exit;
     }
+}
 }
