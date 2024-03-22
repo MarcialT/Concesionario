@@ -416,7 +416,7 @@ for(int i=0; i<carCatalogSize;i++){
 
     case 6:
     {
-            cout<<"\nIngrese el id del cliente: ";
+            cout<<"\nIngrese el id del carro: ";
             cin>>id6;
 
             LeerDatosClientes("clients.csv",clientCatalog,clientCatalogSize);
