@@ -438,7 +438,42 @@ for(int i=0; i<carCatalogSize;i++){
     break;
 
     case 7:
-    cout<<"Editar datos:"<<endl;
-    break;
-}
+    cout<<"Que desea hacer?"<<endl
+    <<"1-Agregar datos"<<endl
+    <<"2-Eliminar datos"<<endl
+    <<"3-Modificar datos"<<endl;
+    cin>>opcion2;
+    if(opcion2==1){
+        cout<<"A que archivo desea agregarle datos?"<<endl
+        <<"1-Clients"<<endl
+        <<"2-Cars_data"<<endl;
+        cin>>opcion3;
+        if(opcion3==1){
+            AgregarDatosClientes();
+        }else if(opcion3==2){
+            AgregarDatosCarros();
+        }
+    }else if(opcion2==2){
+        cout<<"A que archivo desea eliminarle datos?"<<endl
+        <<"1-Clients"<<endl
+        <<"2-Cars_data"<<endl;
+        cin>>opcion3;
+        if(opcion3==1){
+            EliminarDatosClientes();
+        }else if(opcion3==2){
+            EliminarDatosCarros();
+        }
+    }if(opcion2==3){
+        cout<<"A que archivo desea modificarle datos?"<<endl
+        <<"1-Clients"<<endl
+        <<"2-Cars_data"<<endl;
+        cin>>opcion3;
+        if(opcion3==1){
+            ModificarDatosClientes();
+        }else if(opcion3==2){
+            ModificarDatosCarros();
+        }
+    }
+break;
+    }
 }
