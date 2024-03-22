@@ -267,6 +267,7 @@ int main(){
     int clientCatalogSize;
     int id, id2, id3,id4,id5,id6,id7;
     string Nombre_cliente, Apellido_cliente, Email_cliente;
+    int edad_cliente=0;
     bool opcionvalida = false;
 
        do{
@@ -368,8 +369,27 @@ switch (opcion){
 
     break;
 
-    case 4:
-    cout<<"Datos del comprador de un carro:"<<endl;
+    case 4:{
+    cout<<"\nIngrese el id del carro:";
+    cin>>id4;
+
+    LeerDatosClientes("clients.csv",clientCatalog,clientCatalogSize);
+    LeerDatosCarros("cars_data.csv",carsCatalog,carCatalogSize);
+
+for(int i=0; i<carCatalogSize;i++){
+    if(carsCatalog[i].id==id4 ){
+        for(int j=0; j<clientCatalogSize;j++){
+            if(carsCatalog[i].sold_to==clientCatalog[j].id){
+        Nombre_cliente=clientCatalog[j].first_name;
+        Apellido_cliente=clientCatalog[j].last_name;
+        Email_cliente=clientCatalog[j].email;
+        edad_cliente=clientCatalog[j].age;
+         cout<<"\nLos datos del comprador son:\n"<<Nombre_cliente<<","<<Apellido_cliente<<","<<Email_cliente<<","<<edad_cliente;
+            }
+ }
+    }
+}
+    }
     break;
 
     case 5:
