@@ -393,7 +393,25 @@ for(int i=0; i<carCatalogSize;i++){
     break;
 
     case 5:
-    cout<<"datos del vendedor de un carro:"<<endl;
+    cout<<"\nIngrese el id del carro:";
+    cin>>id5;
+
+    LeerDatosClientes("clients.csv",clientCatalog,clientCatalogSize);
+    LeerDatosCarros("cars_data.csv",carsCatalog,carCatalogSize);
+
+for(int i=0; i<carCatalogSize;i++){
+    if(carsCatalog[i].id==id5 ){
+        for(int j=0; j<clientCatalogSize;j++){
+            if(carsCatalog[i].bought_to==clientCatalog[j].id){
+        Nombre_cliente=clientCatalog[j].first_name;
+        Apellido_cliente=clientCatalog[j].last_name;
+        Email_cliente=clientCatalog[j].email;
+        edad_cliente=clientCatalog[j].age;
+         cout<<"\nLos datos del comprador son:\n"<<Nombre_cliente<<","<<Apellido_cliente<<","<<Email_cliente<<","<<edad_cliente;
+            }
+ }
+    }
+}
     break;
 
     case 6:
