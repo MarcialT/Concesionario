@@ -155,8 +155,6 @@ string linea;
 while(getline(archivo_carros,linea)){
     int id_actual = atoi(linea.substr(0,linea.find(';')).c_str());
     if(id_actual==c.id){
-cout<<"Ingrese el id: ";
-cin>>c.id;
 cout<<"Ingrese la marca del carro: ";
 getline(cin,c.maker);
 cout<<"Ingrese el modelo del carro: ";
@@ -243,8 +241,6 @@ void ModificarDatosClientes(){
     while(getline(archivo_clientes,linea)){
         int id_actual = atoi(linea.substr(0,linea.find(';')).c_str());
     if(id_actual==cl.id){
-        cout<<"Ingrese el id: ";
-        cin>>cl.id;
         cout<<"Ingrese el nombre: ";
         getline(cin,cl.first_name);
         cout<<"Ingrese el apellido: ";
