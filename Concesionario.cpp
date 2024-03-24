@@ -92,10 +92,15 @@ void ModificarDatosClientes();
 
 void AgregarDatosCarros(){
 ofstream archivo_carros("cars_data.csv" , ios::app);
+ifstream archivo_carros2("cars_data.csv");
+string linea;
 Carro c;
+int nuevo_id=0;
 
-cout<<"Ingrese el id: ";
-cin>>c.id;
+while(getline(archivo_carros2,linea)){
+    nuevo_id++;
+}
+
 cout<<"Ingrese la marca del carro: ";
 getline(cin,c.maker);
 cout<<"Ingrese el modelo del carro: ";
@@ -113,6 +118,7 @@ cin>>c.bought_for;
 
 archivo_carros<< c.id<< ";"<<c.maker<<";"<<c.model<<";"<<c.year<<";"<<c.sold_to<<";"<<c.bought_to<<";"<<c.sold_for<<";"<<c.bought_for<<endl;
 archivo_carros.close();
+archivo_carros2.close();
 }
 
 void EliminarDatosCarros(){
@@ -179,10 +185,15 @@ cout<<"Los datos se modificaron correctamente"<<endl;
 
 void AgregarDatosClientes(){
     ofstream archivo_clientes("clients.csv", ios::app);
+    ifstream archivo_clientes2("clients.csv");
+    string linea;
     Clientes cl;
+    int nuevo_id=0;
 
-    cout<<"Ingrese el id: ";
-    cin>>cl.id;
+    while(getline(archivo_clientes2,linea)){
+        nuevo_id++;
+    }
+
     cout<<"Ingrese el nombre del cliente: ";
     getline(cin,cl.first_name);
     cout<<"Ingrese el apellido del cliente: ";
@@ -194,6 +205,7 @@ void AgregarDatosClientes(){
 
     archivo_clientes<<cl.id<<";"<<cl.first_name<<";"<<cl.last_name<<";"<<cl.email<<";"<<cl.age<<endl;
     archivo_clientes.close();
+    archivo_clientes2.close();
 }
 
 void EliminarDatosClientes(){
@@ -416,7 +428,7 @@ for(int i=0; i<carCatalogSize;i++){
 
     case 6:
     {
-            cout<<"\nIngrese el id del carro: ";
+            cout<<"\nIngrese el id del cliente: ";
             cin>>id6;
 
             LeerDatosClientes("clients.csv",clientCatalog,clientCatalogSize);
